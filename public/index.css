@@ -1,0 +1,66 @@
+.form-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+    margin-bottom: 10px;
+}
+
+input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    height: 35px;
+    width: 300px;
+    text-align: center;
+}
+
+.bar {
+    position: absolute;
+    height: 1px;
+    bottom: 0;
+    background-color: #F55;
+}
+
+label {
+    position: absolute;
+    bottom: 5px;
+}
+
+button {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    background-color: #F55;
+    color: #FFF;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+img{
+    display: block;
+    margin: 0 auto;
+}
+.form-item input~.bar {
+    width: 100px; /* 设置默认宽度 */
+    transition: width 0.3s ease; /* 为 bar 添加进入和退出的过渡效果 */
+}
+
+.form-item input:focus~.bar {
+    width: 300px;
+}
+
+.form-item input~ label {
+    color: #999; /* 设置默认颜色 */
+    transform: translateY(0); /* 默认位置 */
+    font-size: 20px; /* 默认字体大小 */
+    transition: color 0.3s ease, transform 0.3s ease, font-size 0.3s ease; /* 进入和退出都需要过渡 */
+}
+
+.form-item input:focus~ label,
+.form-item input:valid~ label {
+    color: #F55;
+    transform: translateY(-40px);
+    font-size: 16px;
+}

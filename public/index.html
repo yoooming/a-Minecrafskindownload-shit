@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Skin Download</title>
+</head>
+
+<body>
+    <div>
+        <div class="form-item">
+            <input required type="text" id="user_name">
+            <span class="bar"></span>
+            <label for="user_name">Enter Minecraft ID</label>
+        </div>
+        <div class="get-img">
+            <button id="inquire">查询</button>
+            <p>
+                <img src="" alt="" id="skinImg">
+            </p>
+        </div>
+    </div>
+    <script>
+
+        let inquire_return = document.getElementById("inquire")
+        inquire_return.onclick = async function getUserName() {
+            let username = document.getElementById("user_name").value;
+
+            let skin_Object = await fetch(`/api/users/profiles/minecraft/${username}`)
+                .then(response => response.json())
+                .then(data => {
+                    skin_Id = data.id
+                    console.log('获取到的 ID:', skin_Id);
+                    let new_URL = (`https://crafatar.com/skins/${skin_Id}`)
+                    console.log('获取到的 url:', new_URL);
+                    let img = fetch(new_URL)
+                    console.log('获取到的 img:', img);
+                    let skinImg = document.getElementById("skinImg");
+                    skinImg.src = new_URL
+                })
+                .catch(error => console.error('Error:', error));
+
+        }
+
+    </script>
+</body>
+
+</html>
